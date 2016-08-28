@@ -11,16 +11,25 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
 	$(document).ready(function(){
-		$("#eligible_no_btn").click(function(){
+		$("#eligible_no_btn").on('click',function(e){
+			e.preventDefault();
 			var hsmarks = $("#hs_marks").val();
 			var ssmarks = $("#ss_marks").val();
 			var graduationmarks = $("#graduation_marks").val();
-			console.log(hsmarks);
-			console.log(ssmarks);
-			console.log(graduationmarks);
-			$("#eligible_no_result").load("fetch_no_of_students.php", {hs_marks: hsmarks, ss_marks: ssmarks, graduation_marks: graduationmarks });
+			
+			$.ajax({ type: "GET",
+					 url:"fetch_no_of_students.php",
+					 data:{hs_marks: hsmarks, ss_marks: ssmarks, graduation_marks: graduationmarks },
+					 success: function(result){
+									$("#eligible_no_result").html("Number of Eligible Students: "+ result);
+								}
+				
+			});
+			$("#eligible_no_result").show();
 		});
+		
 	});
+	
 	
   </script>
 	
@@ -159,7 +168,7 @@
 					</div>
                     <div class="col-sm-1"></div>
               </div>
-			  <div  class= "alert alert-success"  ><p id="eligible_no_result"></p></div>
+			  <div  class= "alert alert-success"  id="eligible_no_result" style="display:none"></div>
 			  
 			  <div id="eligible_details_result"></div>
 			  
