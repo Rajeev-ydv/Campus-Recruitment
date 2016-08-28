@@ -9,9 +9,26 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+	$(document).ready(function(){
+		$("#eligible_no_btn").click(function(){
+			var hsmarks = $("#hs_marks").val();
+			var ssmarks = $("#ss_marks").val();
+			var graduationmarks = $("#graduation_marks").val();
+			console.log(hsmarks);
+			console.log(ssmarks);
+			console.log(graduationmarks);
+			$("#eligible_no_result").load("fetch_no_of_students.php", {hs_marks: hsmarks, ss_marks: ssmarks, graduation_marks: graduationmarks });
+		});
+	});
+	
+  </script>
+	
  </head>
 
-<body>
+<body style="background-color:#1abc9c">
+	
+
 
 <div class="container">
   	<div class="row">		
@@ -70,11 +87,13 @@
         </div>
       </div>
 
-      <div class="col-md-9 col-sm-9">
-        <div class="postnewjob">
-            <form class="form-horizontal" action="StudentLoggedIn.php">
-			<h3>Job Details</h3>
-			<hr/>
+      <div class="col-md-9 col-sm-9" style="padding:10px">
+        <div class="postnewjob" >
+            <form class="form-horizontal" >
+			<div class="panel panel-primary" >
+				<div class="panel-heading">General</div>
+				<div class="panel-body" style="background-color:#ffdd00"> 
+		
               <div class="form-group">
 				<div class="col-sm-2"></div>
                 <label for="profilename" class="col-sm-2 control-label">Profile </label>
@@ -92,17 +111,20 @@
               </div>
 			  <div class="form-group">
 					<div class="col-sm-2"></div>
-                    <label for="ctc" class="col-sm-2 control-label">CTC(per Annum)</label>
+                    <label for="ctc" class="col-sm-2 control-label">CTC(Annum)</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="ctc" >
                      </div>
                     
               </div>
-			  <h3>Education Requirements</h3>
-			  <hr/>
+		</div>
+		</div>
+			  <div class="panel panel-primary" >
+				<div class="panel-heading">Educational Qualifications</div>
+				<div class="panel-body" style="background-color:#ffdd00">
 			  <div class="form-group">
 					<div class="col-sm-2"></div>
-                    <label for="hs_marks" class="col-sm-2 control-label">10<sup>th<sup></label>
+                    <label for="hs_marks" class="col-sm-2 control-label" >10<sup>th<sup></label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="hs_marks" >
                      </div>
@@ -124,20 +146,24 @@
                      </div>
                     
               </div>
+		</div>
+		</div>
 			  <br><br><br>
 			  <div class="form-group">
                     <div class="col-sm-1"></div>
 					<div class="col-sm-5">
-						<button class="btn btn-primary" style="width:300px" >View Number of Eligible Students</button>
+						<button class="btn btn-primary" style="width:300px" id="eligible_no_btn" >View Number of Eligible Students</button>
 					</div>
 					<div class="col-sm-5">
-						<button class="btn btn-primary"  style="width:300px">View Eligible Students Details</button>
+						<button class="btn btn-primary"  style="width:300px" id="eligible_details_btn">View Eligible Students Details</button>
 					</div>
                     <div class="col-sm-1"></div>
               </div>
+			  <div  class= "alert alert-success"  ><p id="eligible_no_result"></p></div>
 			  
+			  <div id="eligible_details_result"></div>
 			  
-              <div class="col-sm-3"></div>
+              <div class="col-sm-4"></div>
               <div class="col-sm-6"><button type="submit" class="btn btn-danger" style="width:200px">Post</button></div>
                 <div class="col-sm-3"></div>
 				
