@@ -18,7 +18,10 @@
 			console.log(hsmarks);
 			console.log(ssmarks);
 			console.log(graduationmarks);
-			$("#eligible_no_result").load("fetch_no_of_students.php", {hs_marks: hsmarks, ss_marks: ssmarks, graduation_marks: graduationmarks });
+			$("#eligible_no_result").load("fetch_no_of_students.php", {hs_marks: hsmarks, ss_marks: ssmarks, graduation_marks: graduationmarks },
+							function(data){
+								alert("Data loaded "+data);
+							});
 		});
 	});
 	
