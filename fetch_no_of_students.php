@@ -27,6 +27,10 @@
 					{
 							echo $result->num_rows;
 					}
+					else
+					{
+						echo "0";
+					}
 				}
 				
 				
